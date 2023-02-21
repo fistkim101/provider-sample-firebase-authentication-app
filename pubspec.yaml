@@ -36,6 +36,7 @@ dependencies:
   flutter:
     sdk: flutter
   provider: ^6.0.1
+  flutter_state_notifier: ^0.7.3
   validators: ^3.0.0
 
 dev_dependencies:
