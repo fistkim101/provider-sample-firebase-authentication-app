@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/providers.dart';
@@ -41,32 +42,59 @@ class _FirebaseAuthAppState extends State<FirebaseAuthApp> {
           create: (context) => context.read<AuthRepository>().user,
           initialData: null,
         ),
-        ChangeNotifierProxyProvider<fbAuth.User?, AuthProvider>(
-          create: (context) => AuthProvider(
-            authRepository: context.read<AuthRepository>(),
-          ),
-          update: (
-            BuildContext context,
-            fbAuth.User? userStream,
-            AuthProvider? authProvider,
-          ) =>
-              authProvider!..update(userStream),
+        StateNotifierProvider<AuthProvider, AuthState>(
+          create: (context) => AuthProvider(),
         ),
-        ChangeNotifierProvider<SignInProvider>(
-          create: (context) => SignInProvider(
-            authRepository: context.read<AuthRepository>(),
-          ),
+        StateNotifierProvider<SignInProvider, SignInState>(
+          create: (context) => SignInProvider(),
         ),
-        ChangeNotifierProvider<SignUpProvider>(
-          create: (context) => SignUpProvider(
-            authRepository: context.read<AuthRepository>(),
-          ),
+        StateNotifierProvider<SignUpProvider, SignUpState>(
+          create: (context) => SignUpProvider(),
         ),
-        ChangeNotifierProvider<ProfileProvider>(
-          create: (context) => ProfileProvider(
-            userRepository: context.read<UserRepository>(),
-          ),
+        StateNotifierProvider<ProfileProvider, ProfileState>(
+          create: (context) => ProfileProvider(),
         ),
+        // Provider<AuthRepository>(
+        //   create: (context) => AuthRepository(
+        //     firebaseFirestore: FirebaseFirestore.instance,
+        //     firebaseAuth: fbAuth.FirebaseAuth.instance,
+        //   ),
+        // ),
+        // Provider<UserRepository>(
+        //   create: (context) => UserRepository(
+        //     firebaseFirestore: FirebaseFirestore.instance,
+        //   ),
+        // ),
+        // StreamProvider<fbAuth.User?>(
+        //   create: (context) => context.read<AuthRepository>().user,
+        //   initialData: null,
+        // ),
+        // ChangeNotifierProxyProvider<fbAuth.User?, AuthProvider>(
+        //   create: (context) => AuthProvider(
+        //     authRepository: context.read<AuthRepository>(),
+        //   ),
+        //   update: (
+        //     BuildContext context,
+        //     fbAuth.User? userStream,
+        //     AuthProvider? authProvider,
+        //   ) =>
+        //       authProvider!..update(userStream),
+        // ),
+        // ChangeNotifierProvider<SignInProvider>(
+        //   create: (context) => SignInProvider(
+        //     authRepository: context.read<AuthRepository>(),
+        //   ),
+        // ),
+        // ChangeNotifierProvider<SignUpProvider>(
+        //   create: (context) => SignUpProvider(
+        //     authRepository: context.read<AuthRepository>(),
+        //   ),
+        // ),
+        // ChangeNotifierProvider<ProfileProvider>(
+        //   create: (context) => ProfileProvider(
+        //     userRepository: context.read<UserRepository>(),
+        //   ),
+        // ),
       ],
       child: MaterialApp(
         title: 'Auth Provider',

@@ -8,6 +8,7 @@ class User extends Equatable {
   final String profileImage;
   final int point;
   final String rank;
+
   User({
     required this.id,
     required this.name,
@@ -29,6 +30,7 @@ class User extends Equatable {
       rank: userData['rank'],
     );
   }
+
   factory User.initialUser() {
     return User(
       id: '',

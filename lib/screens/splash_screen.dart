@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthState authState = context.watch<AuthProvider>().state;
+    final AuthState authState = context.watch<AuthState>();
 
     if (authState.authStatusType == AuthStatusType.authenticated) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
       });
     }
 
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),
