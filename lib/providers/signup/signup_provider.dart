@@ -21,16 +21,16 @@ class SignUpProvider with ChangeNotifier {
     required String email,
     required String password,
   }) async {
-    _state = _state.copyWith(statusType: SubmitStatusType.submitting);
+    _state = _state.copyWith(statusType: ProcessStatusType.processing);
     notifyListeners();
 
     try {
       await authRepository.signUp(name: name, email: email, password: password);
-      _state = _state.copyWith(statusType: SubmitStatusType.success);
+      _state = _state.copyWith(statusType: ProcessStatusType.success);
       notifyListeners();
     } on CustomError catch (e) {
       _state =
-          _state.copyWith(statusType: SubmitStatusType.error, customError: e);
+          _state.copyWith(statusType: ProcessStatusType.error, customError: e);
       notifyListeners();
       rethrow;
     }

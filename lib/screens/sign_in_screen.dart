@@ -115,11 +115,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 20.0),
                     ElevatedButton(
                       onPressed: signInState.signInStatusType ==
-                              SubmitStatusType.submitting
+                              ProcessStatusType.processing
                           ? null
                           : _submit,
                       child: Text(signInState.signInStatusType ==
-                              SubmitStatusType.submitting
+                              ProcessStatusType.processing
                           ? 'Loading...'
                           : 'Sign In'),
                       style: ElevatedButton.styleFrom(
@@ -133,7 +133,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     SizedBox(height: 10.0),
                     TextButton(
                       onPressed: signInState.signInStatusType ==
-                              SubmitStatusType.submitting
+                              ProcessStatusType.processing
                           ? null
                           : () {
                               Navigator.pushNamed(

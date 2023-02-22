@@ -32,6 +32,11 @@ class _FirebaseAuthAppState extends State<FirebaseAuthApp> {
             firebaseAuth: fbAuth.FirebaseAuth.instance,
           ),
         ),
+        Provider<UserRepository>(
+          create: (context) => UserRepository(
+            firebaseFirestore: FirebaseFirestore.instance,
+          ),
+        ),
         StreamProvider<fbAuth.User?>(
           create: (context) => context.read<AuthRepository>().user,
           initialData: null,
@@ -55,6 +60,11 @@ class _FirebaseAuthAppState extends State<FirebaseAuthApp> {
         ChangeNotifierProvider<SignUpProvider>(
           create: (context) => SignUpProvider(
             authRepository: context.read<AuthRepository>(),
+          ),
+        ),
+        ChangeNotifierProvider<ProfileProvider>(
+          create: (context) => ProfileProvider(
+            userRepository: context.read<UserRepository>(),
           ),
         ),
       ],

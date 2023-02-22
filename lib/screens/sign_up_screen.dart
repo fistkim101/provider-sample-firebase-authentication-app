@@ -152,11 +152,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: 20.0),
                   ElevatedButton(
                     onPressed:
-                        signupState.statusType == SubmitStatusType.submitting
+                        signupState.statusType == ProcessStatusType.processing
                             ? null
                             : _submit,
                     child: Text(
-                        signupState.statusType == SubmitStatusType.submitting
+                        signupState.statusType == ProcessStatusType.processing
                             ? 'Loading...'
                             : 'Sign Up'),
                     style: ElevatedButton.styleFrom(
@@ -170,7 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: 10.0),
                   TextButton(
                     onPressed:
-                        signupState.statusType == SubmitStatusType.submitting
+                        signupState.statusType == ProcessStatusType.processing
                             ? null
                             : () {
                                 Navigator.pop(context);
