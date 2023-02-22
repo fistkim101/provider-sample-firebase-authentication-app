@@ -3,9 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart' as fbAuth;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_sample_firebase_authentication_app/providers/auth/auth_provider.dart';
-import 'package:provider_sample_firebase_authentication_app/providers/signin/signin.dart';
 
+import 'providers/providers.dart';
 import 'repositories/repositories.dart';
 import 'screens/screens.dart';
 
@@ -50,6 +49,11 @@ class _FirebaseAuthAppState extends State<FirebaseAuthApp> {
         ),
         ChangeNotifierProvider<SignInProvider>(
           create: (context) => SignInProvider(
+            authRepository: context.read<AuthRepository>(),
+          ),
+        ),
+        ChangeNotifierProvider<SignUpProvider>(
+          create: (context) => SignUpProvider(
             authRepository: context.read<AuthRepository>(),
           ),
         ),
