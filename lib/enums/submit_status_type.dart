@@ -1,4 +1,4 @@
-enum SignInStatusType {
+enum SubmitStatusType {
   initial,
   submitting,
   success,

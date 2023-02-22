@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
-import 'package:provider_sample_firebase_authentication_app/enums/signin_status_type.dart';
+import 'package:provider_sample_firebase_authentication_app/enums/submit_status_type.dart';
 
 import '../../enums/enums.dart';
 import '../../models/models.dart';
 
 class SignInState extends Equatable {
-  final SignInStatusType signInStatusType;
+  final SubmitStatusType signInStatusType;
   final CustomError customError;
 
   @override
@@ -13,7 +13,7 @@ class SignInState extends Equatable {
 
   factory SignInState.initial() {
     return SignInState(
-      signInStatusType: SignInStatusType.initial,
+      signInStatusType: SubmitStatusType.initial,
       customError: CustomError(),
     );
   }
@@ -32,7 +32,7 @@ class SignInState extends Equatable {
   }
 
   SignInState copyWith({
-    SignInStatusType? signInStatusType,
+    SubmitStatusType? signInStatusType,
     CustomError? customError,
   }) {
     return SignInState(
